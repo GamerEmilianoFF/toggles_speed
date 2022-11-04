@@ -1,160 +1,60 @@
-local speed = Instance.new("ScreenGui")
 
+--toggle
+
+local Toggle = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
-
-local CheckBox2 = Instance.new("TextButton")
-
-local Speed2 = Instance.new("TextButton")
-
-local Display_Speed_1 = Instance.new("TextButton")
-
-local CheckBox1 = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local TextButton = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
 
 --Properties:
 
-speed.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Toggle.Name = "Toggle"
+Toggle.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Toggle.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Toggle.ResetOnSpawn = false
 
-speed.ResetOnSpawn = false
-
-Display_Speed_1.Name = "Display_Speed_1"
-
-Display_Speed_1.Parent = Frame
-
-Display_Speed_1.Active = false
-
-Display_Speed_1.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-
-Display_Speed_1.BorderColor3 = Color3.fromRGB(186, 186, 186)
-
-Display_Speed_1.BorderSizePixel = 2
-
-Display_Speed_1.Position = UDim2.new(0.0127208577, 0, 0.0667844117, 0)
-
-Display_Speed_1.Selectable = false
-
-Display_Speed_1.Size = UDim2.new(0.6, 0, 0, 10)
-
-Display_Speed_1.Font = Enum.Font.Cartoon
-
-Display_Speed_1.Text = ""
-
-Display_Speed_1.TextColor3 = Color3.fromRGB(255, 255, 255)
-
-Display_Speed_1.TextSize = 16.000
-
-Speed2.Name = "Speed2"
-
-Speed2.Parent = Display_Speed_1
-
-Speed2.Active = false
-
-Speed2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-
-Speed2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-
-Speed2.LayoutOrder = 3
-
-Speed2.Position = UDim2.new(0.4, 0, 0, 0)
-
-Speed2.Selectable = false
-
-Speed2.Size = UDim2.new(0.6, 0, 0, 10)
-
-Speed2.Font = Enum.Font.SourceSansSemibold
-
-Speed2.Text = ""
-
-Speed2.TextColor3 = Color3.fromRGB(255, 255, 255)
-
-Speed2.TextSize = 16.000
-
-Speed2.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
-
-Speed2.TextStrokeTransparency = 0.900
-
-CheckBox1.Name = "CheckBox1"
-
-CheckBox1.Parent = Speed2
-
-CheckBox1.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-
-CheckBox1.BorderColor3 = Color3.fromRGB(0, 0, 0)
-
-CheckBox1.LayoutOrder = 3
-
-CheckBox1.Position = UDim2.new(0.-0.5, 0, 0, 0)
-
-CheckBox1.Size = UDim2.new(2.400, 0, 1, 100)
-
-CheckBox1.Font = Enum.Font.Gotham
-
-CheckBox1.Text = ""
-
-CheckBox1.TextColor3 = Color3.fromRGB(255, 0, 0)
-
-CheckBox1.TextSize = 16.000
-
-CheckBox1.TextTransparency = 1.000
-
-CheckBox2.Name = "CheckBox2"
-
-CheckBox2.Parent = Speed2
-
-CheckBox2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-
-CheckBox2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-
-CheckBox2.LayoutOrder = 3
-
-CheckBox2.Position = UDim2.new(0.-0.5, 0, 0, 0)
-
-CheckBox2.Size = UDim2.new(2.400, 0, 1, 100)
-
-CheckBox2.Visible = false
-
-CheckBox2.Font = Enum.Font.Gotham
-
-CheckBox2.Text = "X"
-
-CheckBox2.TextColor3 = Color3.fromRGB(255, 0, 0)
-
-CheckBox2.TextSize = 46.000
-
-CheckBox2.TextWrapped = true
-
-Frame.Parent = speed
-
+Frame.Parent = Toggle
 Frame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-
-Frame.Position = UDim2.new(0.6, 0, 0.011, 0)
-
-Frame.Size = UDim2.new(0, 210, 0, 150)
-
+Frame.Position = UDim2.new(0.284875154, 0, 0.0723192096, 0)
+Frame.Size = UDim2.new(0, 222, 0, 76)
 Frame.Active = true
-
 Frame.Draggable = true
 
-    
+UICorner.CornerRadius = UDim.new(0, 15)
+UICorner.Parent = Frame
 
-	local script = Instance.new('LocalScript', Speed2)
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+TextButton.Position = UDim2.new(0.107666701, 0, 0.154473558, 0)
+TextButton.Size = UDim2.new(0, 176, 0, 51)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = "Speed"
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.TextScaled = true
+TextButton.TextSize = 14.000
+TextButton.TextWrapped = true
 
-	plr = game:GetService('Players').LocalPlayer
+local script = Instance.new('LocalScript', TextButton)
 
-	script.Parent.CheckBox1.MouseButton1Click:Connect(function(Speed2)
+local state = true
+script.Parent.MouseButton1Down:Connect(function()
+	print"By Space#0234"
+	state = not state
+	if not state then
+		script.Parent.Text = "on"
 
-	repeat wait() until plr.Character:FindFirstChild('Humanoid') or plr.Character:FindFirstChild('xxx')
+		for i, v in pairs(script.Parent.Parent.Parent:GetChildren()) do
+			if v:IsA("TextButton") then 
 
-		hum = plr.Character:FindFirstChild('Humanoid')
 
-		if hum.Health > 0 then
 
-			script.Parent.CheckBox2.Visible = true
 
-			script.Parent.CheckBox1.Visible = false
+				v.Visible = false
+				v.TextLabel.Visible = false
+			end
+		end
 
-			while wait() do
-
-				if plr.Character:FindFirstChild('Humanoid') then
 
 plr = game:GetService('Players').LocalPlayer
 
@@ -174,29 +74,22 @@ down = true
 
 end
 
-						break
 
-					end
 
-				end
+	else
+		script.Parent.Text = "off"
+		--script
+		for i, v in pairs(script.Parent.Parent.Parent:GetChildren()) do
+			if v:IsA("TextButton") then 
+
+				v.Visible = true
+				v.TextLabel.Visible = true
+
+
+
 
 			end
-
-		end)
-
-	
-
-	script.Parent.CheckBox2.MouseButton1Click:Connect(function(Speed2)
-
-	repeat wait() until plr.Character:FindFirstChild('Humanoid') or plr.Character:FindFirstChild('xxx')
-
-		
-
-			script.Parent.CheckBox1.Visible = true
-
-			script.Parent.CheckBox2.Visible = false
-
-			plr = game:GetService('Players').LocalPlayer
+		end
 
 down = false
 
@@ -213,7 +106,8 @@ down = false
         wait()
 
 end
+	end
+end)
 
-end
-
-   )
+UICorner_2.CornerRadius = UDim.new(0, 15)
+UICorner_2.Parent = TextButton
